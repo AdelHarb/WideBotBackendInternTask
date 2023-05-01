@@ -22,7 +22,7 @@ public class WideBotController : ControllerBase
 
             SampleAPI api = JsonConvert.DeserializeObject<SampleAPI>(json);
             var emp = api.data.FirstOrDefault(a => a.Id == id);
-            FacebookGalleryCard apiToSent = new FacebookGalleryCard
+            FacebookGalleryCard apiToBeSent = new FacebookGalleryCard
             {
                 title = emp.first_name,
                 image_url = emp.avatar,
@@ -44,8 +44,8 @@ public class WideBotController : ControllerBase
                 }
                 
             };
-            return Ok(apiToSent);
+            return Ok(apiToBeSent);
         }
-        return Ok("Error");
+        return BadRequest("Error");
     }
 }
